@@ -12,6 +12,7 @@ Background: movies in database
   | Harry Potter and the Half-Blood Prince  | PG     | David Yates     |   2006-06-21 |
   | Casino Royale                           | R      |                 |   2006-06-21 |
   | Die Another Day                         | PG-13  | Martin Campbell |   2002-08-13 |
+  | Jungle                                  | PG-13  | Martin Campbell |   2002-08-13 |
  
 Scenario: add director to existing movie
   When I go to the edit page for "Casino Royale"
@@ -22,8 +23,8 @@ Scenario: add director to existing movie
 Scenario: find movie with same director
   Given I am on the details page for "Die Another Day"
   When  I follow "Find Movies With Same Director"
-  Then  I should be on the Similar Movies page for "Casino Royale"
-  And   I should see "Casino Royale "
+  Then  I should be on the Similar Movies page for "Die Another Day"
+  And   I should see "Jungle"
   But   I should not see "Harry Potter and the Half-Blood Prince"
  
 Scenario: can't find similar movies if we don't know director (sad path)
@@ -31,4 +32,4 @@ Scenario: can't find similar movies if we don't know director (sad path)
   Then  I should not see "David Yates"
   When  I follow "Find Movies With Same Director"
   Then  I should be on the home page
-  And   I should see "'Mission: Impossible III' contains no information regrading its director"
+  And   I should see "The 'Mission: Impossible III' contains no information of its director"
